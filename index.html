@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+    <title>RealtimeEffecter</title>
+<head>
+</head>
+<body>
+    <button type="button" id="btn_sts_on" onclick="changeStatus()">On</button>
+    <button type="button" id="btn_sts_off" onclick="changeStatus()" disabled>Off</button>
+    <br>
+    <button type="button" id="btn_inp_dvic" onclick="checkPermission()">Select Device</button>
+    <script>
+        var outputStatus = false;
+        function changeStatus(){
+            outputStatus = !outputStatus;
+            alert("Status set to "+(outputStatus ? "On" : "Off"));
+            if(document.getElementById("btn_sts_on").disabled){
+                document.getElementById("btn_sts_on").disabled = false;
+                document.getElementById("btn_sts_off").disabled = true;
+            }else{
+                document.getElementById("btn_sts_off").disabled = false;
+                document.getElementById("btn_sts_on").disabled = true;
+            }
+        }
+        function checkPermission(){
+            navigator.mediaDevices.getUserMedia({audio: true })
+            .then(function (stream) {
+                // 受け取った音声の処理を記述。次項ではここの処理を記述していく。
+            })
+            .catch(function (err) {
+                // エラー時の処理
+            });
+
+        }
+    </script>
+</body>
+</html>
